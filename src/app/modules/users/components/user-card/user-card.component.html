@@ -1,8 +1,10 @@
 <section class="user-card shadow-big" (clickOutside)="onClickedOutside()">
-  <img src="https://reqres.in/img/faces/7-image.jpg" alt="Name" />
+  <img [src]="user.avatar" alt="Name" />
 
   <div class="user-info">
-    <h2 class="fs-24 lh-36 fw-700">{{ user.firstName }} {{ user.lastName }}</h2>
+    <h2 class="fs-24 lh-36 fw-700">
+      {{ user.first_name }} {{ user.last_name }}
+    </h2>
     <p class="fs-16 lh-24 fw-600">{{ user.email }}</p>
   </div>
 

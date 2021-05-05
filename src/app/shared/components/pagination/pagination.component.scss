@@ -32,6 +32,10 @@
       background-color: $color-white;
       @extend .animate;
 
+      &:hover {
+        background-color: $color-grayish;
+      }
+
       &:not(:last-child) {
         @extend .mr-2;
       }

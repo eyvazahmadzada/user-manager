@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UsersData } from './interfaces/users';
+
 import { User } from './models/user.model';
+import { UsersService } from './users.service';
 
 @Component({
   selector: 'app-users',
@@ -8,59 +12,38 @@ import { User } from './models/user.model';
 })
 export class UsersComponent implements OnInit {
   sortOptions: string[] = ['First Name', 'Last Name', 'Email'];
+  isDeleteModeOn: boolean = false;
+  isLoading: boolean = false;
 
-  userList: User[] = [
-    {
-      id: 1,
-      firstName: 'Eyvaz',
-      lastName: 'Ahmadzada',
-      email: 'test@test.com',
-      avatarId: 2
-    },
-    {
-      id: 1,
-      firstName: 'Eyvaz',
-      lastName: 'Ahmadzada',
-      email: 'test@test.com',
-      avatarId: 2
-    },
-    {
-      id: 1,
-      firstName: 'Eyvaz',
-      lastName: 'Ahmadzada',
-      email: 'test@test.com',
-      avatarId: 2
-    },
-    {
-      id: 1,
-      firstName: 'Eyvaz',
-      lastName: 'Ahmadzada',
-      email: 'test@test.com',
-      avatarId: 2
-    },
-    {
-      id: 1,
-      firstName: 'Eyvaz',
-      lastName: 'Ahmadzada',
-      email: 'test@test.com',
-      avatarId: 2
-    },
-    {
-      id: 1,
-      firstName: 'Eyvaz',
-      lastName: 'Ahmadzada',
-      email: 'test@test.com',
-      avatarId: 2
-    }
-  ];
+  totalPages: number;
+  userList: User[] = [];
 
-  constructor() {}
+  constructor(
+    private usersService: UsersService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    console.log('test');
+    // Get current page from route
+    this.route.queryParams.subscribe((params) => {
+      const pageParam = +params['page'];
+
+      // Get users from database with page 1, if pageParam is undefined
+      this.isLoading = true;
+      this.usersService.getUsers(pageParam || 1).then((res: UsersData) => {
+        this.totalPages = res.total_pages;
+        this.userList = res.data;
+
+        this.isLoading = false;
+      });
+    });
   }
 
   openDeleteModal(id: number) {
-    console.log(id);
+    this.isDeleteModeOn = true;
+  }
+
+  closeDeleteModal() {
+    this.isDeleteModeOn = false;
   }
 }

@@ -1,27 +1,44 @@
 import { Location } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+import { FormGroup } from '../../models/form-group.model';
+import formGroupsData from '../../data/form-groups';
 
 @Component({
   selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  templateUrl: './create.component.html'
 })
-export class CreateComponent {
+export class CreateComponent implements OnInit, OnDestroy {
   // Number of avatar images
   avatars: number = 12;
-
   selectedAvatarId: number;
+
+  // Modal state
+  isModalOpen: boolean = false;
+
+  formGroups: FormGroup[] = formGroupsData;
 
   constructor(private location: Location) {}
 
+  ngOnInit() {
+    // Animate modal on load
+    setTimeout(() => (this.isModalOpen = true));
+  }
+
   navigateBack() {
-    // Wait 400 milliseconds for modal animation
-    setTimeout(() => {
-      this.location.back();
-    }, 400);
+    this.location.back();
   }
 
   onSetSelected(id: number) {
     this.selectedAvatarId = id;
+  }
+
+  onSubmit(form: NgForm) {
+    console.log(form.value);
+  }
+
+  ngOnDestroy() {
+    this.isModalOpen = false;
   }
 }

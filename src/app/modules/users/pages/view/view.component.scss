@@ -1,0 +1,15 @@
+@import '~src/app/styles/app';
+
+.main-form {
+  text-align: center;
+
+  .form-groups {
+    .user-img {
+      border-radius: 50%;
+      margin-bottom: 24px;
+      width: 100%;
+      max-width: 300px;
+      min-height: 300px;
+    }
+  }
+}

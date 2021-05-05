@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { SharedModule } from 'src/app/shared/shared.module';
 import { UsersComponent } from './users.component';
 import { CreateComponent } from './pages/create/create.component';
 import { EditComponent } from './pages/edit/edit.component';
 import { ViewComponent } from './pages/view/view.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { OrderTogglerComponent } from './components/order-toggler/order-toggler.component';
 
 export const routes: Routes = [

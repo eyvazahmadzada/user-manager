@@ -1,0 +1,14 @@
+<button
+  (click)="buttonClicked()"
+  [type]="type"
+  class="button shadow hover-dark fs-20 lh-20 fw-700"
+  [ngStyle]="{ 'background-color': bgColor }"
+  [disabled]="disabled"
+>
+  <span
+    *ngIf="icon"
+    [ngClass]="'icon-' + icon"
+    class="icon square-20 mr-lg-2"
+  ></span>
+  <ng-content></ng-content>
+</button>

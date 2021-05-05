@@ -1,5 +1,5 @@
-<app-modal header="Edit User" (onClose)="navigateBack()">
-  <form class="edit-form">
+<app-modal [isOpen]="isModalOpen" header="Edit User" (onClose)="navigateBack()">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="main-form">
     <div class="form-groups mb-2">
       <div class="avatars-wrapper mb-2">
         <label class="fs-20 lh-28 fw-600 mb-1">Choose an avatar:</label>
@@ -7,7 +7,7 @@
           *ngFor="let avatar of [].constructor(avatars); let i = index"
           type="button"
           class="mb-lg-4 mb-3 mr-2"
-          [ngClass]="{ selected: i + 1 === user.avatarId }"
+          [ngClass]="{ selected: i + 1 === selectedAvatarId }"
           [style.backgroundImage]="
             'url(https://reqres.in/img/faces/' + (i + 1) + '-image.jpg)'
           "
@@ -15,31 +15,25 @@
         ></button>
       </div>
 
-      <app-form-group
-        label="First Name"
-        type="text"
-        icon="user"
-        placeholder="Byron"
-        initValue="Byron"
-      ></app-form-group>
-
-      <app-form-group
-        label="Last Name"
-        type="text"
-        icon="user"
-        placeholder="Fields"
-        initValue="Fields"
-      ></app-form-group>
-
-      <app-form-group
-        label="Email"
-        type="email"
-        icon="letter"
-        placeholder="byron.fields@reqres.in"
-        initValue="byron.fields@reqres.in"
-      ></app-form-group>
+      <!-- Form groups -->
+      <div class="form-group" *ngFor="let group of formGroups">
+        <label class="fs-20 lh-28 fw-600 mb-1">{{ group.label }}</label>
+        <div class="input-wrapper">
+          <input
+            class="fs-16 lh-16 fw-600 shadow"
+            [type]="group.type"
+            [name]="group.name"
+            [placeholder]="group.placeholder"
+            ngModel
+            #group="ngModel"
+            [email]="group.type === 'email'"
+            required
+          />
+          <span class="icon icon-user square-20"></span>
+        </div>
+      </div>
     </div>
 
-    <app-button>Update</app-button>
+    <app-button type="submit" [disabled]="!form.valid">Update</app-button>
   </form>
 </app-modal>

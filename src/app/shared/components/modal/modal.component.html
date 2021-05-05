@@ -1,8 +1,8 @@
-<div *ngIf="isOpen" class="backdrop" (click)="onModalClose()"></div>
+<div *ngIf="open" class="backdrop" (click)="onModalClose()"></div>
 
-<section [ngClass]="{ open: isOpen, close: !isOpen }" class="modal shadow-big">
+<section [ngClass]="{ open: open, close: !open }" class="modal shadow-big">
   <div class="modal-header">
-    <h1 class="fs-36 lh-36 fw-700">
+    <h1 class="fs-lg-36 lh-lg-36 fs-28 lh-28 fw-700">
       {{ header.split(' ')[0] }} <span>{{ header.split(' ')[1] }}</span>
     </h1>
 

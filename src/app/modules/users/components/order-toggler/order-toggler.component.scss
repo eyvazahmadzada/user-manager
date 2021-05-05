@@ -12,10 +12,6 @@
   border-radius: $radius;
   @extend .animate;
 
-  &:hover {
-    background-color: $color-grayish;
-  }
-
   .icon {
     @extend .animate;
 

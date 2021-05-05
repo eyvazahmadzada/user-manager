@@ -1,18 +1,4 @@
-// Scrollbar styling (for Chrome)
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  border-radius: $radius;
-  background-color: $color-grayish;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: $radius;
-  background-color: $color-primary;
-}
-
+// Classes that are used in more than one component
 .icon-btn {
   position: absolute;
   display: flex;
@@ -43,6 +29,87 @@
 
   &::placeholder {
     color: rgba($color: $color-secondary, $alpha: 0.4);
+  }
+
+  &:disabled {
+    background-color: $color-grayish;
+  }
+
+  &:focus {
+    border-color: $color-primary;
+  }
+}
+
+.main-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .form-groups {
+    width: 100%;
+
+    .form-group {
+      width: 100%;
+      margin-bottom: 16px;
+
+      label {
+        text-align: left;
+        display: block;
+        color: rgba($color: $color-secondary, $alpha: 0.6);
+      }
+
+      .input-wrapper {
+        position: relative;
+
+        input {
+          @extend .main-input;
+          @extend .animate;
+
+          &.ng-invalid.ng-touched {
+            border-color: $color-red;
+          }
+        }
+        .icon {
+          @extend .top-center;
+          position: absolute;
+          left: 16px;
+        }
+      }
+    }
+
+    .avatars-wrapper {
+      flex-wrap: wrap;
+      text-align: center;
+
+      label {
+        display: block;
+        text-align: left;
+        color: rgba($color: $color-secondary, $alpha: 0.6);
+      }
+
+      button {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.6;
+
+        &.selected {
+          opacity: 1;
+          border: 2px solid $color-primary;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: map-get($breakpoints, lg)) {
+  .main-form {
+    .form-groups {
+      width: 50%;
+    }
   }
 }
 
@@ -103,7 +170,7 @@
 }
 
 // Darken background color on hover
-.hover-dark:hover {
+.hover-dark:hover:not(:disabled) {
   filter: brightness(90%);
 }
 
@@ -131,7 +198,7 @@
 
 /* Generate icons */
 $icons: more, sort, arrow, asc, search, close, add, prev, next, view, edit,
-  delete, user, letter;
+  delete, user, letter, warning;
 
 @each $icon in $icons {
   .icon-#{$icon} {
@@ -166,3 +233,18 @@ $rectangles: (
 
 /* Generate rectangles */
 @include make-shape($rectangles);
+
+// Scrollbar styling (for Chrome)
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  border-radius: $radius;
+  background-color: $color-grayish;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: $radius;
+  background-color: $color-primary;
+}
