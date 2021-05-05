@@ -1,0 +1,43 @@
+@import '~src/app/styles/app';
+
+.user-card {
+  position: relative;
+  background-color: $color-white;
+  border-radius: $radius;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    min-height: 250px;
+    max-height: 300px;
+    object-fit: cover;
+  }
+
+  .user-info {
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 64px;
+
+    h2 {
+      color: $color-primary;
+    }
+
+    p {
+      color: $color-secondary;
+    }
+  }
+
+  .actions-menu {
+    @extend .menu;
+    width: 60%;
+    right: 40px;
+    bottom: 48px;
+    transform-origin: bottom;
+
+    .item {
+      display: flex;
+      align-items: center;
+      text-transform: capitalize;
+    }
+  }
+}

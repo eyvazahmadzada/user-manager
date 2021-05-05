@@ -1,0 +1,21 @@
+<div class="dropdown" (clickOutside)="onClickedOutside()">
+  <button class="dropdown-btn shadow px-3" (click)="onToggle()">
+    <div class="d-flex align-items-center">
+      <span class="icon square-20 mr-2" [ngClass]="'icon-' + icon"></span>
+      <span class="fs-16 lh-16 fw-600">{{ activeItem }}</span>
+    </div>
+
+    <span class="icon icon-arrow square-12"></span>
+  </button>
+
+  <div [ngClass]="{ open: isOpen }" class="dropdown-menu shadow mt-2">
+    <button
+      class="item fs-16 lh-16 fw-500"
+      (click)="onSetActive(item)"
+      *ngFor="let item of items"
+      [ngClass]="{ selected: item === activeItem }"
+    >
+      {{ item }}
+    </button>
+  </div>
+</div>

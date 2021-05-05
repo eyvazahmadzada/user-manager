@@ -1,0 +1,21 @@
+<label class="search-bar" for="search-bar">
+  <input
+    class="fs-16 lh-16 fw-600 shadow"
+    id="search-bar"
+    type="text"
+    placeholder="Search users..."
+    (input)="onInputChange($event)"
+    [value]="searchKeyword"
+  />
+
+  <span class="icon icon-search top-center square-20"></span>
+
+  <!-- Clear input button -->
+  <button
+    [ngClass]="{ active: searchKeyword !== '' }"
+    class="icon-btn close-btn top-center"
+    (click)="onClearInput()"
+  >
+    <span class="icon icon-close square-16"></span>
+  </button>
+</label>

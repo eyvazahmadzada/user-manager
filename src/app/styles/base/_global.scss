@@ -1,0 +1,138 @@
+.icon-btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 12px;
+  bottom: 16px;
+  background-color: transparent;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  @extend .animate;
+
+  &:hover {
+    background-color: $color-grayish;
+  }
+}
+
+.menu {
+  position: absolute;
+  width: 100%;
+  border-radius: $radius;
+  overflow: hidden;
+  @extend .animate;
+  // Hide menu
+  @extend .hide;
+  transform: scaleY(0);
+
+  &.open {
+    @extend .show;
+    height: auto;
+    transform: scaleY(1);
+  }
+
+  .item {
+    display: block;
+    text-align: left;
+    width: 100%;
+    background-color: $color-white;
+    padding: 12px 16px;
+    @extend .animate;
+
+    &:hover,
+    &.selected {
+      background-color: $color-dark-grayish;
+    }
+  }
+}
+
+// Vertically center position absolute items
+.top-center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// Horizontally center position absolute items
+.left-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// Hide & show elements on DOM
+.hide {
+  opacity: 0;
+  z-index: -1;
+  visibility: hidden;
+}
+
+.show {
+  opacity: 1;
+  z-index: 100;
+  visibility: visible;
+}
+
+// Darken background color on hover
+.hover-dark:hover {
+  filter: brightness(90%);
+}
+
+// Box shadows
+.shadow {
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.25);
+
+  &-big {
+    box-shadow: 3px 3px 5px rgba(0, 32, 63, 0.25);
+  }
+}
+
+.animate {
+  transition: $transition;
+}
+
+.icon {
+  display: inline-flex;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+}
+
+/* Generate icons */
+$icons: more, sort, arrow, asc, search, close, add, prev, next, view, edit,
+  delete;
+
+@each $icon in $icons {
+  .icon-#{$icon} {
+    background-image: url('~src/assets/icons/' + $icon + '.svg');
+  }
+}
+
+$squares: (
+  xs: (
+    12: 12,
+    16: 16,
+    20: 20,
+    24: 24,
+    32: 32
+  )
+);
+
+$rectangles: (
+  xs: (
+    21: 45,
+    22: 12,
+    26: 30,
+    36: 52,
+    46: 24,
+    78: 40,
+    96: 64
+  )
+);
+
+/* Generate squares */
+@include make-shape($squares, square);
+
+/* Generate rectangles */
+@include make-shape($rectangles);

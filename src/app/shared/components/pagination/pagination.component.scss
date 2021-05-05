@@ -1,0 +1,45 @@
+@import '~src/app/styles/app';
+
+.pagination {
+  display: flex;
+  align-items: center;
+  height: 40px;
+
+  &-btn {
+    position: static;
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: default;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &-bullets {
+    display: flex;
+    align-items: center;
+
+    .bullet {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: $color-white;
+      @extend .animate;
+
+      &:not(:last-child) {
+        @extend .mr-2;
+      }
+
+      &.selected {
+        background-color: $color-primary;
+        color: $color-white;
+      }
+    }
+  }
+}

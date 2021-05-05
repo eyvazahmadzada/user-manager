@@ -1,0 +1,31 @@
+<section class="pagination">
+  <!-- Prev button -->
+  <button
+    class="pagination-btn icon-btn"
+    [ngClass]="{ disabled: curPage === 1 }"
+    (click)="onSetPrev()"
+  >
+    <span class="icon icon-prev square-24"></span>
+  </button>
+
+  <!-- Bullets -->
+  <div class="pagination-bullets px-3">
+    <button
+      *ngFor="let page of [].constructor(pages); let i = index"
+      [ngClass]="{ selected: i + 1 === curPage }"
+      class="bullet hover-darker fs-12 lh-12 fw-600"
+      (click)="onSetCurrent(i + 1)"
+    >
+      {{ i + 1 }}
+    </button>
+  </div>
+
+  <!-- Next button -->
+  <button
+    class="pagination-btn icon-btn"
+    [ngClass]="{ disabled: curPage === pages }"
+    (click)="onSetNext()"
+  >
+    <span class="icon icon-next square-24"></span>
+  </button>
+</section>

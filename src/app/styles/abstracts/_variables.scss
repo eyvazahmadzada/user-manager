@@ -1,0 +1,18 @@
+$color-black: #000;
+$color-white: #fff;
+
+$color-primary: #43c59e;
+$color-secondary: #00203f;
+$color-grayish: #f2f2f2;
+$color-dark-grayish: #eaeaea;
+
+$transition: all 400ms ease;
+$radius: 10px;
+
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);

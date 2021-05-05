@@ -1,0 +1,121 @@
+.ff-cairo {
+  font-family: "Cairo", sans-serif;
+}
+
+// Create dynamic classes for font-size, font-weight, line-height properties
+
+/* Font sizes */
+$font-sizes: 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 22, 24, 26, 28, 32,
+  36, 40, 44, 48, 52, 64;
+@each $size in $font-sizes {
+  .fs-#{$size} {
+    font-size: #{$size}px;
+  }
+}
+
+/* Line heights */
+$line-heights: 6, 10, 16, 18, 20, 24, 28, 31, 32, 36, 37, 40, 48, 52, 56;
+@each $lh in $line-heights {
+  .lh-#{$lh} {
+    line-height: #{$lh}px;
+  }
+}
+
+/* Font weights */
+@for $i from 1 through 9 {
+  .fw-#{$i * 100} {
+    font-weight: #{$i * 100};
+  }
+}
+
+@media (min-width: map-get($breakpoints, lg)) {
+  $font-sizes: 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 24, 26, 28, 32, 36, 38,
+    40, 46, 48, 52, 64, 72, 82;
+  @each $size in $font-sizes {
+    .fs-lg-#{$size} {
+      font-size: #{$size}px !important;
+    }
+  }
+
+  $line-heights: 16, 18, 20, 24, 28, 32, 36, 40, 44, 48, 52, 55, 56, 64, 72, 90;
+  @each $lh in $line-heights {
+    .lh-lg-#{$lh} {
+      line-height: #{$lh}px !important;
+    }
+  }
+
+  @for $i from 1 through 9 {
+    .fw-lg-#{$i * 100} {
+      font-weight: #{$i * 100} !important;
+    }
+  }
+}
+
+// Import local fonts
+
+/* cairo-regular - latin-ext_latin */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../../assets/fonts/cairo-v10-latin-ext_latin-regular.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../../../assets/fonts/cairo-v10-latin-ext_latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("../../../assets/fonts/cairo-v10-latin-ext_latin-regular.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("../../../assets/fonts/cairo-v10-latin-ext_latin-regular.woff")
+      format("woff"),
+    /* Modern Browsers */
+      url("../../../assets/fonts/cairo-v10-latin-ext_latin-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../../../assets/fonts/cairo-v10-latin-ext_latin-regular.svg#Cairo")
+      format("svg"); /* Legacy iOS */
+}
+/* cairo-600 - latin-ext_latin */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../../../assets/fonts/cairo-v10-latin-ext_latin-600.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../../../assets/fonts/cairo-v10-latin-ext_latin-600.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("../../../assets/fonts/cairo-v10-latin-ext_latin-600.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("../../../assets/fonts/cairo-v10-latin-ext_latin-600.woff")
+      format("woff"),
+    /* Modern Browsers */
+      url("../../../assets/fonts/cairo-v10-latin-ext_latin-600.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../../../assets/fonts/cairo-v10-latin-ext_latin-600.svg#Cairo")
+      format("svg"); /* Legacy iOS */
+}
+/* cairo-700 - latin-ext_latin */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../../../assets/fonts/cairo-v10-latin-ext_latin-700.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../../../assets/fonts/cairo-v10-latin-ext_latin-700.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("../../../assets/fonts/cairo-v10-latin-ext_latin-700.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("../../../assets/fonts/cairo-v10-latin-ext_latin-700.woff")
+      format("woff"),
+    /* Modern Browsers */
+      url("../../../assets/fonts/cairo-v10-latin-ext_latin-700.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../../../assets/fonts/cairo-v10-latin-ext_latin-700.svg#Cairo")
+      format("svg"); /* Legacy iOS */
+}

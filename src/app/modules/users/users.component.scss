@@ -1,0 +1,50 @@
+@import '~src/app/styles/app';
+
+.users-container {
+  padding-top: 36px;
+  padding-bottom: 36px;
+  background-image: url('~src/assets/img/users-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  color: $color-black;
+
+  .header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    // Header styling
+    h1 {
+      text-transform: uppercase;
+
+      span {
+        color: $color-primary;
+      }
+    }
+  }
+
+  .actions {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+
+  .pagination-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (min-width: map-get($breakpoints, lg)) {
+  .users-container {
+    background-image: url('~src/assets/img/users-bg-lg.png');
+    padding-top: 48px;
+    padding-bottom: 48px;
+
+    .actions {
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+  }
+}

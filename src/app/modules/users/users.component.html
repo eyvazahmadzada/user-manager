@@ -1,0 +1,52 @@
+<router-outlet></router-outlet>
+
+<main class="users-container container">
+  <div class="header-wrapper">
+    <h1 class="fs-24 fs-lg-48 lh-32 lh-lg-64 fw-700 mr-lg-0 mr-4">
+      <span>USER MANAGEMENT</span> SYSTEM
+    </h1>
+
+    <!-- Mobile button -->
+    <div class="d-lg-none d-block">
+      <app-button routerLink="create" icon="add"></app-button>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="row actions">
+    <div class="col-lg-2 col-8 order-lg-1 order-2">
+      <app-dropdown
+        name="Sort By"
+        icon="sort"
+        [items]="sortOptions"
+      ></app-dropdown>
+    </div>
+
+    <div class="col-lg-1 col-4 order-lg-2 order-3">
+      <app-order-toggler></app-order-toggler>
+    </div>
+
+    <div class="col-lg-6 order-lg-3 order-1 mb-lg-0 mb-3">
+      <app-search-bar></app-search-bar>
+    </div>
+
+    <div class="col-lg-3 order-4 d-lg-flex d-none justify-content-end">
+      <app-button routerLink="create" icon="add">Add User</app-button>
+    </div>
+  </div>
+
+  <!-- User cards -->
+  <div class="row">
+    <div class="col-lg-3 col-sm-6 mb-lg-5 mb-4" *ngFor="let user of userList">
+      <app-user-card
+        [user]="user"
+        (onDelete)="openDeleteModal($event)"
+      ></app-user-card>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination-wrapper mt-lg-5 mt-3">
+    <app-pagination [pages]="2"></app-pagination>
+  </div>
+</main>

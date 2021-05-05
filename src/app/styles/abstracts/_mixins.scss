@@ -1,0 +1,22 @@
+// Make square and rectangle
+@mixin make-shape($shape-arr, $shape: rect) {
+  @each $break-point, $size-arr in $shape-arr {
+    @each $width, $height in $size-arr {
+      $name: #{$width}-#{$height};
+      @if ($shape == square) {
+        $name: #{$width};
+      }
+
+      @if ($break-point != xs) {
+        $name: #{$break-point}-#{$name};
+      }
+      $name: #{$shape}-#{$name};
+
+      .#{$name} {
+        min-width: #{$width}px;
+        width: #{$width}px;
+        height: #{$height}px;
+      }
+    }
+  }
+}

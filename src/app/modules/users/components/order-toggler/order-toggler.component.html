@@ -1,0 +1,7 @@
+<button class="order-toggler shadow" (click)="onToggle()">
+  <span
+    [ngClass]="{ toggle: !isAsc }"
+    class="icon icon-asc square-20 mr-2"
+  ></span>
+  <span class="fs-16 lh-16 fw-600">{{ isAsc ? 'ASC' : 'DESC' }}</span>
+</button>
