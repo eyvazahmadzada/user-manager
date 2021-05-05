@@ -14,33 +14,44 @@ export class UsersComponent implements OnInit {
       id: 1,
       firstName: 'Eyvaz',
       lastName: 'Ahmadzada',
-      email: 'test@test.com'
+      email: 'test@test.com',
+      avatarId: 2
     },
     {
       id: 1,
       firstName: 'Eyvaz',
       lastName: 'Ahmadzada',
-      email: 'test@test.com'
+      email: 'test@test.com',
+      avatarId: 2
     },
     {
       id: 1,
       firstName: 'Eyvaz',
       lastName: 'Ahmadzada',
-      email: 'test@test.com'
+      email: 'test@test.com',
+      avatarId: 2
     },
     {
       id: 1,
       firstName: 'Eyvaz',
       lastName: 'Ahmadzada',
-      email: 'test@test.com'
+      email: 'test@test.com',
+      avatarId: 2
     },
     {
       id: 1,
       firstName: 'Eyvaz',
       lastName: 'Ahmadzada',
-      email: 'test@test.com'
+      email: 'test@test.com',
+      avatarId: 2
     },
-    { id: 1, firstName: 'Eyvaz', lastName: 'Ahmadzada', email: 'test@test.com' }
+    {
+      id: 1,
+      firstName: 'Eyvaz',
+      lastName: 'Ahmadzada',
+      email: 'test@test.com',
+      avatarId: 2
+    }
   ];
 
   constructor() {}

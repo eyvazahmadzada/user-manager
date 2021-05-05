@@ -1,3 +1,18 @@
+// Scrollbar styling (for Chrome)
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  border-radius: $radius;
+  background-color: $color-grayish;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: $radius;
+  background-color: $color-primary;
+}
+
 .icon-btn {
   position: absolute;
   display: flex;
@@ -13,6 +28,21 @@
 
   &:hover {
     background-color: $color-grayish;
+  }
+}
+
+.main-input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  border: 1px solid $color-grayish;
+  border-radius: $radius;
+  padding-left: 52px;
+  padding-right: 52px;
+
+  &::placeholder {
+    color: rgba($color: $color-secondary, $alpha: 0.4);
   }
 }
 
@@ -101,7 +131,7 @@
 
 /* Generate icons */
 $icons: more, sort, arrow, asc, search, close, add, prev, next, view, edit,
-  delete;
+  delete, user, letter;
 
 @each $icon in $icons {
   .icon-#{$icon} {

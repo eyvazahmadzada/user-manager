@@ -5,6 +5,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
 
 import { ButtonComponent } from './components/button/button.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { FormGroupComponent } from './components/form-group/form-group.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
@@ -16,7 +17,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     SearchBarComponent,
     ButtonComponent,
     PaginationComponent,
-    ModalComponent
+    ModalComponent,
+    FormGroupComponent
   ],
   exports: [
     DropdownComponent,
@@ -24,6 +26,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     ButtonComponent,
     PaginationComponent,
     ModalComponent,
+    FormGroupComponent,
     CommonModule,
     HttpClientModule,
     ClickOutsideModule

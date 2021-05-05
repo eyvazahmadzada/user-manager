@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-create',
@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent {
+  // Number of avatar images
+  avatars: number = 12;
+
+  selectedAvatarId: number;
+
   constructor(private location: Location) {}
 
   navigateBack() {
@@ -14,5 +19,9 @@ export class CreateComponent {
     setTimeout(() => {
       this.location.back();
     }, 400);
+  }
+
+  onSetSelected(id: number) {
+    this.selectedAvatarId = id;
   }
 }

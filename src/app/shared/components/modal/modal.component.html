@@ -6,12 +6,12 @@
       {{ header.split(' ')[0] }} <span>{{ header.split(' ')[1] }}</span>
     </h1>
 
-    <button class="icon-btn" (click)="onModalClose()">
+    <button type="button" class="icon-btn" (click)="onModalClose()">
       <span class="icon icon-close square-32"></span>
     </button>
   </div>
 
-  <div class="model-content">
-    <ng-template></ng-template>
+  <div class="modal-content">
+    <ng-content></ng-content>
   </div>
 </section>

@@ -1,1 +1,42 @@
-<app-modal header="Create User" (onClose)="navigateBack()"></app-modal>
+<app-modal header="Create User" (onClose)="navigateBack()">
+  <form class="create-form">
+    <div class="form-groups mb-2">
+      <div class="avatars-wrapper mb-2">
+        <label class="fs-20 lh-28 fw-600 mb-2">Choose an avatar:</label>
+        <button
+          *ngFor="let avatar of [].constructor(avatars); let i = index"
+          type="button"
+          class="mb-lg-4 mb-3 mr-2"
+          [ngClass]="{ selected: i + 1 === selectedAvatarId }"
+          [style.backgroundImage]="
+            'url(https://reqres.in/img/faces/' + (i + 1) + '-image.jpg)'
+          "
+          (click)="onSetSelected(i + 1)"
+        ></button>
+      </div>
+
+      <app-form-group
+        label="First Name"
+        type="text"
+        icon="user"
+        placeholder="Byron"
+      ></app-form-group>
+
+      <app-form-group
+        label="Last Name"
+        type="text"
+        icon="user"
+        placeholder="Fields"
+      ></app-form-group>
+
+      <app-form-group
+        label="Email"
+        type="email"
+        icon="letter"
+        placeholder="byron.fields@reqres.in"
+      ></app-form-group>
+    </div>
+
+    <app-button>Create</app-button>
+  </form>
+</app-modal>

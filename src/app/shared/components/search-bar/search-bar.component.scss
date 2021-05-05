@@ -5,18 +5,7 @@
   position: relative;
 
   input {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 48px;
-    border: 1px solid $color-grayish;
-    border-radius: $radius;
-    padding-left: 52px;
-    padding-right: 52px;
-
-    &::placeholder {
-      color: rgba($color: $color-secondary, $alpha: 0.4);
-    }
+    @extend .main-input;
   }
 
   .icon-search {

@@ -1,0 +1,44 @@
+@import '~src/app/styles/app';
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .form-groups {
+    width: 100%;
+
+    .avatars-wrapper {
+      flex-wrap: wrap;
+      text-align: center;
+
+      label {
+        display: block;
+        color: rgba($color: $color-secondary, $alpha: 0.6);
+      }
+
+      button {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.6;
+
+        &.selected {
+          opacity: 1;
+          border: 2px solid $color-primary;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: map-get($breakpoints, lg)) {
+  .create-form {
+    .form-groups {
+      width: 50%;
+    }
+  }
+}
