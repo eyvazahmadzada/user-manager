@@ -1,4 +1,4 @@
-@import '~src/app/styles/app';
+@import '~src/app/styles/shared';
 
 .pagination {
   display: flex;
@@ -37,7 +37,7 @@
       }
 
       &:not(:last-child) {
-        @extend .mr-2;
+        margin-right: 8px;
       }
 
       &.selected {

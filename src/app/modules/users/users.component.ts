@@ -13,6 +13,7 @@ import { UsersService } from './users.service';
 export class UsersComponent implements OnInit {
   sortOptions: string[] = ['First Name', 'Last Name', 'Email'];
   isDeleteModeOn: boolean = false;
+  deletingUserId: number;
   isLoading: boolean = false;
 
   totalPages: number;
@@ -41,9 +42,24 @@ export class UsersComponent implements OnInit {
 
   openDeleteModal(id: number) {
     this.isDeleteModeOn = true;
+    this.deletingUserId = id;
   }
 
   closeDeleteModal() {
     this.isDeleteModeOn = false;
+  }
+
+  confirmDelete() {
+    this.isLoading = true;
+    // Delete user in database
+    this.usersService.deleteUser(this.deletingUserId).then((res) => {
+      this.isLoading = false;
+
+      // Remove it from local array
+      const index = this.userList
+        .map((el) => el.id)
+        .indexOf(this.deletingUserId);
+      this.userList.splice(index, 1);
+    });
   }
 }

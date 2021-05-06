@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClickOutsideModule } from 'ng-click-outside';
@@ -10,16 +9,18 @@ import { ModalComponent } from './components/modal/modal.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { AsPipe } from './pipes/as.pipe';
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule, ClickOutsideModule, FormsModule],
+  imports: [CommonModule, ClickOutsideModule, FormsModule],
   declarations: [
     DropdownComponent,
     SearchBarComponent,
     ButtonComponent,
     PaginationComponent,
     ModalComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    AsPipe
   ],
   exports: [
     DropdownComponent,
@@ -28,8 +29,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     PaginationComponent,
     ModalComponent,
     SpinnerComponent,
+    AsPipe,
     CommonModule,
-    HttpClientModule,
     ClickOutsideModule,
     FormsModule
   ]

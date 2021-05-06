@@ -37,6 +37,7 @@ export class ViewComponent implements OnInit, OnDestroy {
       const userId = +params['id'];
 
       this.isLoading = true;
+      // Get user from database
       this.usersService.getUser(userId).then((res: UserData) => {
         this.user = res.data;
         this.isLoading = false;

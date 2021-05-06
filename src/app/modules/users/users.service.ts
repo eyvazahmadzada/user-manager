@@ -32,16 +32,16 @@ export class UsersService {
     return response;
   }
 
-  public async updateUser(user: User) {
+  public async updateUser(id: number, user: User) {
     const response = await this.httpClient
-      .put(Api.singleUser(user.id), user)
+      .put(Api.singleUser(id), user)
       .toPromise();
     return response;
   }
 
-  public async deleteUser(user: User) {
+  public async deleteUser(id: number) {
     const response = await this.httpClient
-      .delete(Api.singleUser(user.id))
+      .delete(Api.singleUser(id))
       .toPromise();
     return response;
   }

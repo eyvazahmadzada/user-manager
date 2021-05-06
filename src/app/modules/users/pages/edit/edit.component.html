@@ -24,7 +24,7 @@
             [type]="group.type"
             [name]="group.name"
             [placeholder]="group.placeholder"
-            ngModel
+            [(ngModel)]="user[group.name]"
             #group="ngModel"
             [email]="group.type === 'email'"
             required

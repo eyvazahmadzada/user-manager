@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 
 import { FormGroup } from '../../models/form-group.model';
 import formGroupsData from '../../data/form-groups';
+import { UsersService } from '../../users.service';
 
 @Component({
   selector: 'app-create',
@@ -18,8 +19,9 @@ export class CreateComponent implements OnInit, OnDestroy {
   isModalOpen: boolean = false;
 
   formGroups: FormGroup[] = formGroupsData;
+  isLoading: boolean = false;
 
-  constructor(private location: Location) {}
+  constructor(private location: Location, private usersService: UsersService) {}
 
   ngOnInit() {
     // Animate modal on load
@@ -35,7 +37,18 @@ export class CreateComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
+    const userData = form.value;
+
+    this.isLoading = true;
+    // Create user in database
+    this.usersService
+      .createUser({
+        avatar: `https://reqres.in/img/faces/${this.selectedAvatarId}-image.jpg`,
+        first_name: userData.first_name,
+        last_name: userData.last_name,
+        email: userData.email
+      })
+      .then((res) => (this.isLoading = false));
   }
 
   ngOnDestroy() {
