@@ -19,16 +19,17 @@ export class UsersComponent implements OnInit {
     { name: 'email', label: 'Email' }
   ];
 
+  isLoading: boolean = false;
+
   isDeleteModeOn: boolean = false;
   deletingUserId: number;
-  isLoading: boolean = false;
+  sortOption: string;
+  isAsc: boolean;
 
   totalPages: number;
   userList: User[] = [];
   // Store a copy for search function
   userListCopy: User[] = [];
-
-  sortOption: string;
 
   constructor(
     private usersService: UsersService,
@@ -54,17 +55,22 @@ export class UsersComponent implements OnInit {
 
   sortOptionChanged(option: string) {
     // Sort userlist array with provided option
-    this.userList = Utils.sortArray(this.userList as [], option);
+    this.userList = Utils.sortArray(this.userList as [], option, this.isAsc);
     this.sortOption = option;
   }
 
   sortOrderChanged(isAsc: boolean) {
-    // Sort userlist array with provided order
-    this.userList = Utils.sortArray(
-      this.userList as [],
-      this.sortOption,
-      isAsc
-    );
+    this.isAsc = isAsc;
+
+    // If sort option is specified
+    if (this.sortOption) {
+      // Sort userlist array with provided order
+      this.userList = Utils.sortArray(
+        this.userList as [],
+        this.sortOption,
+        isAsc
+      );
+    }
   }
 
   search(keyword: string) {
