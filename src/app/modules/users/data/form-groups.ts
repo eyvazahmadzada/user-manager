@@ -5,6 +5,7 @@ const formGroups: FormGroup[] = [
     label: 'First Name',
     name: 'first_name',
     type: 'text',
+    value: '',
     icon: 'user',
     placeholder: 'Byron'
   },
@@ -12,6 +13,7 @@ const formGroups: FormGroup[] = [
     label: 'Last Name',
     name: 'last_name',
     type: 'text',
+    value: '',
     icon: 'user',
     placeholder: 'Fields'
   },
@@ -19,6 +21,7 @@ const formGroups: FormGroup[] = [
     label: 'Email',
     name: 'email',
     type: 'email',
+    value: '',
     icon: 'letter',
     placeholder: 'byron.fields@reqres.in'
   }

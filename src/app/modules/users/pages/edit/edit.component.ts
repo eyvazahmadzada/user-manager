@@ -43,6 +43,18 @@ export class EditComponent implements OnInit, OnDestroy {
       this.isLoading = true;
       this.usersService.getUser(userId).then((res: UserData) => {
         this.user = res.data;
+
+        // Set initial value in form groups
+        this.formGroups.forEach((group) => {
+          group.value = this.user[group.name as keyof User] as string;
+        });
+
+        // Get avatar id from url
+        const strArr = this.user.avatar.match(/\d/g);
+        if (strArr) {
+          this.selectedAvatarId = +strArr[0] || 1;
+        }
+
         this.isLoading = false;
       });
     });
@@ -68,7 +80,14 @@ export class EditComponent implements OnInit, OnDestroy {
         last_name: userData.last_name,
         email: userData.email
       })
-      .then((res) => (this.isLoading = false));
+      .then((res) => {
+        this.isLoading = false;
+        this.isModalOpen = false;
+
+        // Animate modal on navigate back
+        setTimeout(() => this.navigateBack(), 400);
+      })
+      .catch((err) => this.navigateBack());
   }
 
   ngOnDestroy() {

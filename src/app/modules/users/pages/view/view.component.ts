@@ -38,10 +38,19 @@ export class ViewComponent implements OnInit, OnDestroy {
 
       this.isLoading = true;
       // Get user from database
-      this.usersService.getUser(userId).then((res: UserData) => {
-        this.user = res.data;
-        this.isLoading = false;
-      });
+      this.usersService
+        .getUser(userId)
+        .then((res: UserData) => {
+          this.user = res.data;
+
+          // Set initial value in form groups
+          this.formGroups.forEach((group) => {
+            group.value = this.user[group.name as keyof User] as string;
+          });
+
+          this.isLoading = false;
+        })
+        .catch((err) => this.navigateBack());
     });
   }
 

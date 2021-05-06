@@ -2,7 +2,7 @@
   <button class="dropdown-btn shadow px-3" (click)="onToggle()">
     <div class="d-flex align-items-center">
       <span class="icon square-20 mr-2" [ngClass]="'icon-' + icon"></span>
-      <span class="fs-16 lh-16 fw-600">{{ activeItem }}</span>
+      <span class="fs-16 lh-16 fw-600">{{ activeItemLabel }}</span>
     </div>
 
     <span class="icon icon-arrow square-12"></span>
@@ -11,11 +11,11 @@
   <div [ngClass]="{ open: isOpen }" class="dropdown-menu shadow mt-2">
     <button
       class="item fs-16 lh-16 fw-500"
-      (click)="onSetActive(item)"
       *ngFor="let item of items"
-      [ngClass]="{ selected: item === activeItem }"
+      (click)="onSetActive(item)"
+      [ngClass]="{ selected: item.label === activeItemLabel }"
     >
-      {{ item }}
+      {{ item.label }}
     </button>
   </div>
 </div>

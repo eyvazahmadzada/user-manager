@@ -3,41 +3,48 @@
   header="Create User"
   (onClose)="navigateBack()"
 >
-  <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="main-form">
-    <div class="form-groups mb-2">
-      <div class="avatars-wrapper mb-2">
-        <label class="fs-20 lh-28 fw-600 mb-2">Choose an avatar:</label>
-        <button
-          *ngFor="let avatar of [].constructor(avatars); let i = index"
-          type="button"
-          class="mb-lg-4 mb-3 mr-2"
-          [ngClass]="{ selected: i + 1 === selectedAvatarId }"
-          [style.backgroundImage]="
-            'url(https://reqres.in/img/faces/' + (i + 1) + '-image.jpg)'
-          "
-          (click)="onSetSelected(i + 1)"
-        ></button>
-      </div>
+  <!-- Show loading spinner while data gets fetched -->
+  <div *ngIf="isLoading; else content" class="spinner-wrapper">
+    <app-spinner></app-spinner>
+  </div>
 
-      <!-- Form groups -->
-      <div class="form-group" *ngFor="let group of formGroups">
-        <label class="fs-20 lh-28 fw-600 mb-1">{{ group.label }}</label>
-        <div class="input-wrapper">
-          <input
-            class="fs-16 lh-16 fw-600 shadow"
-            [type]="group.type"
-            [name]="group.name"
-            [placeholder]="group.placeholder"
-            ngModel
-            #group="ngModel"
-            [email]="group.type === 'email'"
-            required
-          />
-          <span class="icon icon-user square-20"></span>
+  <ng-template #content>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="main-form">
+      <div class="form-groups mb-2">
+        <div class="avatars-wrapper mb-2">
+          <label class="fs-20 lh-28 fw-600 mb-2">Choose an avatar:</label>
+          <button
+            *ngFor="let avatar of [].constructor(avatars); let i = index"
+            type="button"
+            class="mb-lg-4 mb-3 mr-2"
+            [ngClass]="{ selected: i + 1 === selectedAvatarId }"
+            [style.backgroundImage]="
+              'url(https://reqres.in/img/faces/' + (i + 1) + '-image.jpg)'
+            "
+            (click)="onSetSelected(i + 1)"
+          ></button>
+        </div>
+
+        <!-- Form groups -->
+        <div class="form-group" *ngFor="let group of formGroups">
+          <label class="fs-20 lh-28 fw-600 mb-1">{{ group.label }}</label>
+          <div class="input-wrapper">
+            <input
+              class="fs-16 lh-16 fw-600 shadow"
+              [type]="group.type"
+              [name]="group.name"
+              [placeholder]="group.placeholder"
+              ngModel
+              #group="ngModel"
+              [email]="group.type === 'email'"
+              required
+            />
+            <span class="icon icon-user square-20"></span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <app-button type="submit" [disabled]="!form.valid">Create</app-button>
-  </form>
+      <app-button type="submit" [disabled]="!form.valid">Create</app-button>
+    </form>
+  </ng-template>
 </app-modal>

@@ -18,10 +18,10 @@
               [type]="group.type"
               [name]="group.name"
               [placeholder]="group.placeholder"
-              [(ngModel)]="user[group.name]"
-              ngModel
+              [(ngModel)]="group.value"
               #group="ngModel"
               [email]="group.type === 'email'"
+              disabled
               required
             />
             <span class="icon icon-user square-20"></span>

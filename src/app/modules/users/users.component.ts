@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UsersData } from './interfaces/users';
 
+import Utils from 'src/app/shared/utils';
+import { UsersData } from './interfaces/users';
+import { DropdownItem } from './models/dropdown-item';
 import { User } from './models/user.model';
 import { UsersService } from './users.service';
 
@@ -11,13 +13,22 @@ import { UsersService } from './users.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  sortOptions: string[] = ['First Name', 'Last Name', 'Email'];
+  sortOptions: DropdownItem[] = [
+    { name: 'first_name', label: 'First Name' },
+    { name: 'last_name', label: 'Last Name' },
+    { name: 'email', label: 'Email' }
+  ];
+
   isDeleteModeOn: boolean = false;
   deletingUserId: number;
   isLoading: boolean = false;
 
   totalPages: number;
   userList: User[] = [];
+  // Store a copy for search function
+  userListCopy: User[] = [];
+
+  sortOption: string;
 
   constructor(
     private usersService: UsersService,
@@ -34,10 +45,35 @@ export class UsersComponent implements OnInit {
       this.usersService.getUsers(pageParam || 1).then((res: UsersData) => {
         this.totalPages = res.total_pages;
         this.userList = res.data;
+        this.userListCopy = this.userList.slice();
 
         this.isLoading = false;
       });
     });
+  }
+
+  sortOptionChanged(option: string) {
+    // Sort userlist array with provided option
+    this.userList = Utils.sortArray(this.userList as [], option);
+    this.sortOption = option;
+  }
+
+  sortOrderChanged(isAsc: boolean) {
+    // Sort userlist array with provided order
+    this.userList = Utils.sortArray(
+      this.userList as [],
+      this.sortOption,
+      isAsc
+    );
+  }
+
+  search(keyword: string) {
+    // Update userlist array
+    if (keyword === '') {
+      this.userList = this.userListCopy.slice();
+    } else {
+      this.userList = Utils.searchArray(this.userList, keyword);
+    }
   }
 
   openDeleteModal(id: number) {
@@ -61,5 +97,7 @@ export class UsersComponent implements OnInit {
         .indexOf(this.deletingUserId);
       this.userList.splice(index, 1);
     });
+
+    this.isDeleteModeOn = false;
   }
 }

@@ -43,12 +43,21 @@ export class CreateComponent implements OnInit, OnDestroy {
     // Create user in database
     this.usersService
       .createUser({
-        avatar: `https://reqres.in/img/faces/${this.selectedAvatarId}-image.jpg`,
+        avatar: `https://reqres.in/img/faces/${
+          this.selectedAvatarId || 1
+        }-image.jpg`,
         first_name: userData.first_name,
         last_name: userData.last_name,
         email: userData.email
       })
-      .then((res) => (this.isLoading = false));
+      .then((res) => {
+        this.isLoading = false;
+        this.isModalOpen = false;
+
+        // Animate modal on navigate back
+        setTimeout(() => this.navigateBack(), 400);
+      })
+      .catch((err) => this.navigateBack());
   }
 
   ngOnDestroy() {

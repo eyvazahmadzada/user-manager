@@ -25,15 +25,18 @@
           name="Sort By"
           icon="sort"
           [items]="sortOptions"
+          (onChange)="sortOptionChanged($event)"
         ></app-dropdown>
       </div>
 
       <div class="col-lg-1 col-4 order-lg-2 order-3">
-        <app-order-toggler></app-order-toggler>
+        <app-order-toggler
+          (onChange)="sortOrderChanged($event)"
+        ></app-order-toggler>
       </div>
 
       <div class="col-lg-6 order-lg-3 order-1 mb-lg-0 mb-3">
-        <app-search-bar></app-search-bar>
+        <app-search-bar (onChange)="search($event)"></app-search-bar>
       </div>
 
       <div class="col-lg-3 order-4 d-lg-flex d-none justify-content-end">

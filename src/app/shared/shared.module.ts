@@ -9,7 +9,6 @@ import { ModalComponent } from './components/modal/modal.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { AsPipe } from './pipes/as.pipe';
 
 @NgModule({
   imports: [CommonModule, ClickOutsideModule, FormsModule],
@@ -19,8 +18,7 @@ import { AsPipe } from './pipes/as.pipe';
     ButtonComponent,
     PaginationComponent,
     ModalComponent,
-    SpinnerComponent,
-    AsPipe
+    SpinnerComponent
   ],
   exports: [
     DropdownComponent,
@@ -29,7 +27,6 @@ import { AsPipe } from './pipes/as.pipe';
     PaginationComponent,
     ModalComponent,
     SpinnerComponent,
-    AsPipe,
     CommonModule,
     ClickOutsideModule,
     FormsModule

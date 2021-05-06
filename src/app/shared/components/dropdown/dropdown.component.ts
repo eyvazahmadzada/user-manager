@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { DropdownItem } from 'src/app/modules/users/models/dropdown-item';
 
 @Component({
   selector: 'app-dropdown',
@@ -8,15 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DropdownComponent implements OnInit {
   @Input() name: string;
   @Input() icon: string;
-  @Input() items: string[];
+  @Input() items: DropdownItem[];
+
+  @Output() onChange = new EventEmitter<string>();
 
   // Declare variables for dropdown state
   isOpen: boolean = false;
-  activeItem: string = '';
+  activeItemLabel: string;
 
   ngOnInit() {
     // Set dropdown name if specified, otherwise set first item active
-    this.activeItem = this.name || this.items[0];
+    this.activeItemLabel = this.name || this.items[0].name;
   }
 
   // Close menu when clicked outside
@@ -30,8 +33,11 @@ export class DropdownComponent implements OnInit {
   }
 
   // Set item active when it gets clicked, then close menu
-  onSetActive(item: string) {
-    this.activeItem = item;
+  onSetActive(item: DropdownItem) {
+    this.activeItemLabel = item.label;
     this.isOpen = false;
+
+    // Send update to parent
+    this.onChange.emit(item.name);
   }
 }
