@@ -116,6 +116,7 @@
 .menu {
   position: absolute;
   width: 100%;
+  background-color: $color-white;
   border-radius: $radius;
   overflow: hidden;
   @extend .animate;
